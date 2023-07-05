@@ -1,4 +1,4 @@
- <Project Sdk="Microsoft.NET.Sdk.Web">
+﻿ <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -7,18 +7,31 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\Filters\**" />
+    <Content Remove="Controllers\Filters\**" />
+    <EmbeddedResource Remove="Controllers\Filters\**" />
+    <None Remove="Controllers\Filters\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.5" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\MiddleWares\" />
-    <Folder Include="Controllers\Filters\" />
-    <Folder Include="Controllers\Configurations\" />
+    <ProjectReference Include="..\AgileShop.Service\AgileShop.Service.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AgileShop.Service\AgileShop.Service.csproj" />
+    <Folder Include="Controllers\" />
+    <Folder Include="Configurations\" />
+    <Folder Include="Filters\" />
+    <Folder Include="MiddleWares\" />
+    <Folder Include="wwwroot\Medias\Audios\" />
+    <Folder Include="wwwroot\Medias\Documents\" />
+    <Folder Include="wwwroot\Medias\Images\" />
+    <Folder Include="wwwroot\Medias\Avatars\" />
+    <Folder Include="wwwroot\Medias\Videos\" />
   </ItemGroup>
 
 </Project>

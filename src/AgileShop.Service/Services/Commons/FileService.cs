@@ -1,0 +1,61 @@
+﻿using AgileShop.Service.Common.Helpers;
+using AgileShop.Service.Interfaces.Common;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AgileShop.Service.Services.Commons;
+
+public class FileService : IFileService
+{
+    private readonly string MEDIA = "media";
+    private readonly string IMAGES = "images";
+    private readonly string AVATARS = "avatars";
+    private readonly string ROOTPATH;
+
+    public FileService(IWebHostEnvironment env)
+    {
+        ROOTPATH = env.WebRootPath;
+    }
+    public Task<bool> DeleteAvatarAsync(string subpath)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task<bool> DeleteImageAsync(string subpath)
+    {
+        string path=Path.Combine(ROOTPATH, subpath);
+        if(File.Exists(path))
+        {
+            await Task.Run(() =>
+            {
+                File.Delete(path);
+            }
+            );
+            return true;
+        }
+        else return false;
+    }
+
+    public Task<string> UploadAvatarAsync(IFormFile avater)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task<string> UploadImageAsync(IFormFile image)
+    {
+        string newImageName = MediaHelper.MakeImageName(image.FileName);
+        string subPath = Path.Combine(MEDIA,IMAGES,newImageName);
+        string path  = Path.Combine(ROOTPATH, subPath);
+
+        var stream = new FileStream(path, FileMode.Create);
+        await image.CopyToAsync(stream);
+        stream.Close();
+
+        return subPath;
+    }
+}

@@ -8,13 +8,20 @@
 
   <ItemGroup>
     <Folder Include="Common\Attributes\" />
-    <Folder Include="Common\Helpers\" />
     <Folder Include="Common\Exceptions\" />
     <Folder Include="Common\Security\" />
     <Folder Include="Common\Validations\" />
-    <Folder Include="Dtos\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="Services\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
+  </ItemGroup>
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\AgileShop.DataAccess\AgileShop.DataAccess.csproj" />
+	  <ProjectReference Include="..\AgileShop.Domain\AgileShop.Domain.csproj" />
+	</ItemGroup>
 
 </Project>
